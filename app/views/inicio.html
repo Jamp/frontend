@@ -1,0 +1,110 @@
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Datos Generales</h3>
+            </div>
+            <div class="panel-body">
+                <h4 class="text-center">Bienvenido Sctr. {{usuario.nombre}}</h4>
+                <p class="text-center"><b>Última visita:</b> {{usuario.ultima}}.</p>
+                <p class="text-center" ng-if="!usuario.region"><b>Nivel acceso:</b> Nacional</p>
+                <div ng-if="!usuario.region">
+                    <div class="col-md-6 text-center"><b>Región:</b> Nacional</div>
+                    <div class="col-md-6 text-center" ng-if="usuario.distrito != 0"><b>Distrito:</b> Nacional</div>
+                    <div class="col-md-6 text-center" ng-if="usuario.grupo != 0"><b>Grupo:</b> Nacional</div>
+                    <div class="col-md-6 text-center" ng-if="usuario.rama != 0"><b>Unidad:</b> Nacional</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Últimas Actividades</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Fecha de realización"><i class="icon-question-sign"></i></a></th>
+                            <th>Actividad</th>
+                            <th>Lugar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="actividades == null">
+                            <td colspan="3" class="text-center"><i class="fa fa-spinner fa-spin"></i> Por favor, espere...</td>
+                        </tr>
+                        <tr ng-if="actividades == false" class="danger">
+                            <td colspan="3"><i class="fa fa-exclamation-triangle"></i> Ha fallado la conexión</td>
+                        </tr>
+                        <tr ng-repeat="item in actividades">
+                            <td>{{item.fecha | date: 'dd/MM/yyyy' }}</td>
+                            <td>{{item.nombre}}</td>
+                            <td>{{item.lugar}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Cantidad de Actividades/Mes</h3>
+            </div>
+            <div class="panel-body text-center">
+                <div id="grafica" google-chart chart="chartObject">
+                    <i class="fa fa-spinner fa-spin text-center"></i> Por favor, espere...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Participación</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="text-center">CVAL</th>
+                            <th class="text-center">CAC</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-if="!estadisticas">
+                        <tr class="danger">
+                            <td colspan="3"><i class="fa fa-exclamation-triangle"></i> Ha fallado la conexión</td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="estadisticas">
+                        <tr>
+                            <th>Total de Jóvenes</th>
+                            <td class="text-center" colspan="2">{{estadisticas.total}}</td>
+                        </tr>
+                        <tr>
+                            <th>Jóvenes Participando</th>
+                            <td class="text-center">{{estadisticas.participacion.cval}}</td>
+                            <td class="text-center">{{estadisticas.participacion.cac}}</td>
+                        </tr>
+                        <tr>
+                            <th>Insignias Obtenidos</th>
+                            <td class="text-center">{{estadisticas.logros.cval}}</td>
+                            <td class="text-center">{{estadisticas.logros.cac}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td class="text-center">{{estadisticas.total - (estadisticas.participacion.cval + estadisticas.logros.cval)}}</td>
+                            <td class="text-center">{{estadisticas.total - (estadisticas.participacion.cac + estadisticas.logros.cac)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
