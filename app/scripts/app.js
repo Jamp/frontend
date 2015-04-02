@@ -14,24 +14,27 @@ angular
     'ngCookies',
     'ngSanitize',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ui.bootstrap',
     'googlechart',
     'angular-jwt',
     'angular-storage'
 ])
-.config(function ($routeProvider, $httpProvider, jwtInterceptorProvider) {
-    $routeProvider
-    .when('/', {
-        templateUrl: 'views/inicio.html',
-        controller: 'InicioCtrl',
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, jwtInterceptorProvider) {
+    $stateProvider
+    .state('entrar', {
+        url: '/entrar',
+        templateUrl: 'views/entrar.html',
+        controller: 'EntrarCtrl',
         publicView: true
     })
-    .otherwise({
-        redirectTo: '/'
+    .state('inicio',{
+        url: '/inicio',
+        templateUrl: 'views/inicio.html',
+        controller: 'InicioCtrl'
     });
 
-    //$urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/entrar');
 
     // Validación del JWT Token
     jwtInterceptorProvider.tokenGetter = function(store) {
@@ -39,18 +42,19 @@ angular
     };
     $httpProvider.interceptors.push('jwtInterceptor');
 
-}).run(function($rootScope, $location, store, jwtHelper) {
-    $rootScope.$on('$routeChangeStart', function(e, to) {
+}).run(function($rootScope, $state, store, jwtHelper) {
+    // Validar Acceso a la app
+    $rootScope.$on('$stateChangeStart', function(e, to) {
         if (!to.publicView) {
             if (!store.get('token') || jwtHelper.isTokenExpired(store.get('token'))) {
                 e.preventDefault();
+                $rootScope.resetAlert();
                 store.remove('me');
                 store.remove('token');
-                $location.path('/');
+                $state.go('entrar');
             }
         }
-  });
-}).run(function($rootScope){
+    });
     // Sistema de Alertas
     $rootScope.alerts = [];
     $rootScope.addAlert = function(mensaje, tipo) {
@@ -64,6 +68,9 @@ angular
     };
     $rootScope.closeAlert = function(index) {
         $rootScope.alerts.splice(index, 1);
+    };
+    $rootScope.resetAlert= function(){
+        $rootScope.alerts = [];
     };
 
     // Helper para la interpretación del status de retorno del servidor
@@ -87,5 +94,5 @@ angular
             return true;
         }
         return msg;
-    }
+    };
 });

@@ -1,0 +1,40 @@
+<div class="navbar-collapse collapse" ng-controller="MenuCtrl">
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/inicio"> <i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+                <i class="fa fa-flag"></i> Concursos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#/estructura/jovenes/{{usuario.nivel}}/{{usuario.estructura}}">Jovenes</a></li>
+                <li><a href="#/estructura/actividades/{{usuario.nivel}}/{{usuario.estructura}}">Actividades</a></li>
+                <li><a href="#/reportar">Reportar</a></li>
+                <li><a href="#/informe">Informe</a></li>
+            </ul>
+        </li>
+        <li  class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+                <i class="fa fa-university"></i> Turco <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#/jovenes">Jovenes</a></li>
+                <li><a href="#/dashboard">Actividades</a></li>
+                <li><a href="#/dashboard">Reportar</a></li>
+                <li><a href="#/dashboard">Informe</a></li>
+            </ul>
+        </li>
+        <li  class="dropdown" dropdown on-toggle="toggled(open)">
+            <a href class="dropdown-toggle" dropdown-toggle>
+                <i class="fa fa-heartbeat"></i> Fichas Médicas <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#/jovenes">Nuevas Ficha</a></li>
+                <li><a href="#/dashboard">Listar Fichas</a></li>
+            </ul>
+        </li>
+        <li><a href="#/usuarios"> <i class="fa fa-users"></i> Usuarios</a></li>
+        <li><a href="#/me"> <i class="fa fa-user"></i> Perfil</a></li>
+        <li><a href="#/help"> <i class="fa fa-question-circle"></i> Ayuda</a></li>
+        <li><a href="#/logout"> <i class="fa fa-power-off"></i> Salir</a></li>
+    </ul>
+</div>
