@@ -33,29 +33,33 @@ angular
         templateUrl: 'views/inicio.html',
         controller: 'InicioCtrl'
     })
+    .state('navegar',{
+        url: '/navegar/:tipo/',
+        controller: 'NavegarCtrl'
+    })
     .state('estructura',{
-        url: '/estructura/:tipo/:estructuraId/:nivelId',
-        templateUrl: 'app/estructura/estructura.html',
+        url: '/estructura/:tipo/:nivelId/:estructuraId',
+        templateUrl: 'views/estructura.html',
         controller: 'EstructuraCtrl'
     })
     .state('jovenes',{
         url: '/jovenes/:ramaId',
-        templateUrl: 'app/jovenes/jovenes.html',
+        templateUrl: 'views/jovenes.html',
         controller: 'JovenesCtrl'
     })
     .state('usuarios', {
         url: '/usuarios',
-        templateUrl: 'app/usuarios/usuarios.html',
+        templateUrl: 'views/usuarios.html',
         controller: 'UsuariosCtrl'
     })
     .state('usuario', {
         url: '/usuario/:usuarioId',
-        templateUrl: 'app/usuario/usuario.html',
+        templateUrl: 'views/usuario.html',
         controller: 'UsuarioCtrl'
     })
     .state('actividades', {
         url: 'actividades/:ramaId',
-        templateUrl: 'app/actividades',
+        templateUrl: 'views/actividades',
         controller: 'ActividadesCtrl'
     })
     .state('salir',{
