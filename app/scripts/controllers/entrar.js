@@ -10,6 +10,7 @@
 angular.module('frontendApp')
   .controller('EntrarCtrl', function ($rootScope, $scope, $state, jwtHelper, store, apiFactory) {
         if (store.get('token') && !jwtHelper.isTokenExpired(store.get('token'))) {
+            $rootScope.logged = true;
             $state.go('inicio');
         }
 
@@ -50,6 +51,7 @@ angular.module('frontendApp')
                         expire: identidad.exp,
                         create: identidad.iat
                     };
+                    $rootScope.logged = true;
                     store.set('token', token);
                     store.set('me', me);
                     $state.go('inicio');

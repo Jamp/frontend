@@ -32,6 +32,37 @@ angular
         url: '/inicio',
         templateUrl: 'views/inicio.html',
         controller: 'InicioCtrl'
+    })
+    .state('estructura',{
+        url: '/estructura/:tipo/:estructuraId/:nivelId',
+        templateUrl: 'app/estructura/estructura.html',
+        controller: 'EstructuraCtrl'
+    })
+    .state('jovenes',{
+        url: '/jovenes/:ramaId',
+        templateUrl: 'app/jovenes/jovenes.html',
+        controller: 'JovenesCtrl'
+    })
+    .state('usuarios', {
+        url: '/usuarios',
+        templateUrl: 'app/usuarios/usuarios.html',
+        controller: 'UsuariosCtrl'
+    })
+    .state('usuario', {
+        url: '/usuario/:usuarioId',
+        templateUrl: 'app/usuario/usuario.html',
+        controller: 'UsuarioCtrl'
+    })
+    .state('actividades', {
+        url: 'actividades/:ramaId',
+        templateUrl: 'app/actividades',
+        controller: 'ActividadesCtrl'
+    })
+    .state('salir',{
+        url: '/salir',
+        // templateUrl: 'app/entrar/entrar.html',
+        controller: 'SalirCtrl',
+        publicView: true
     });
 
     $urlRouterProvider.otherwise('/entrar');
@@ -43,8 +74,11 @@ angular
     $httpProvider.interceptors.push('jwtInterceptor');
 
 }).run(function($rootScope, $state, store, jwtHelper) {
+    $rootScope.logged = false;
+
     // Validar Acceso a la app
     $rootScope.$on('$stateChangeStart', function(e, to) {
+        $rootScope.resetAlert();
         if (!to.publicView) {
             if (!store.get('token') || jwtHelper.isTokenExpired(store.get('token'))) {
                 e.preventDefault();
@@ -52,6 +86,8 @@ angular
                 store.remove('me');
                 store.remove('token');
                 $state.go('entrar');
+            } else {
+                $rootScope.logged = true;
             }
         }
     });
