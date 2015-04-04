@@ -1,0 +1,30 @@
+<div class="col-md-10 col-md-offset-1">
+    <h3>Grupo {{lista[0].grupo}} - {{lista[0].rama}}</h3>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closealerta($index)">{{alert.msg}}</alert>
+    <p class="text-right"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</button></p>
+    <table class="table table-striped">
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Credenciales</th>
+            <th>Nombre</th>
+            <th class="text-center" colspan="3">Opciones</th>
+        </tr>
+        <tr ng-if="!lista">
+            <td class="text-center" colspan="5"><i class="fa fa-spinner fa-spin"></i> Por favor espere...</td>
+        </tr>
+        <tr ng-repeat="item in lista ">
+            <td class="text-center">{{$index+1}}</td>
+            <td class="text-center">{{item.credenciales}}</td>
+            <td>{{item.primer_nombre}} {{item.segundo_nombre}} {{item.primer_apellido}} {{item.segundo_apellido}}</td>
+            <td class="text-center">
+                <button class="btn btn-primary" ng-click="fnDetalles(item.id)"><i class="fa fa-edit"></i> Editar</button>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-warning" ng-click="fnDetalles(item.id)"><i class="fa fa-bolt"></i> Migrar</button>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-danger" ng-click="fnDetalles(item.id)"><i class="fa fa-trash"></i> Borrar</button>
+            </td>
+        </tr>
+    </table>
+</div>
