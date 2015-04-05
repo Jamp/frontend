@@ -1,7 +1,10 @@
 <div class="col-md-10 col-md-offset-1">
     <h3>Grupo {{lista[0].grupo}} - {{lista[0].rama}}</h3>
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closealerta($index)">{{alert.msg}}</alert>
-    <p class="text-right"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</button></p>
+    <p class="text-right">
+        <btn-back ng-if="!historyBack"></btn-back>
+        <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</button>
+    </p>
     <table class="table table-striped">
         <tr>
             <th class="text-center">ID</th>

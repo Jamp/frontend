@@ -12,6 +12,11 @@ angular.module('frontendApp')
     var nivel = (+$stateParams.nivelId)?+$stateParams.nivelId+1:undefined;
     var estructura = $stateParams.estructuraId;
     var tipo = $stateParams.tipo;
+    var usuario = store.get('me');
+
+    if ((+usuario.nivel+1) === nivel){
+        $scope.historyBack = true;
+    }
 
     if (nivel === 5){
         $scope.newUrl = '/jovenes/';
