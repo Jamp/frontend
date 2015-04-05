@@ -74,8 +74,12 @@ body {
 }
 .input-search > i {
     color: #CCC;
+    cursor: pointer;
 }
 .input-search > input[type="search"], .input-search > input[type="search"]:focus {
     border: 0;
     outline: none
+}
+.hidden {
+    display: none;
 }
