@@ -4,7 +4,10 @@
  * @ngdoc directive
  * @name frontendApp.directive:components
  * @description
- * # components
+ * # Componentes reutilizables
+ * # - Input Search con su autoclean
+ * # - Botón Volver
+ * # - Botón Cancelar que no es más que un volver
  */
 angular.module('frontendApp')
 .directive('inputSearch', function () {
@@ -26,6 +29,17 @@ angular.module('frontendApp')
     return {
         restrict: 'E',
         template: '<a href class="btn btn-warning"><i class="fa fa-chevron-left"></i> Volver</a>',
+        link: function(scope, element) {
+            $(element).on('click', function() {
+                $window.history.back();
+            });
+        }
+    };
+})
+.directive('btnCancel', function($window){
+    return {
+        restrict: 'E',
+        template: '<a href class="btn btn-danger"><i class="fa fa-close"></i> Cancelar</a>',
         link: function(scope, element) {
             $(element).on('click', function() {
                 $window.history.back();
