@@ -65,6 +65,13 @@ angular.module('frontendApp')
                 url: base+lugar
             });
         },
+        borrarEstructura: function(nivel, id){
+            var lugar = 'estructura/'+nivel+'/'+id;
+            return $http({
+                method: 'DELETE',
+                url: base+lugar
+            });
+        },
         jovenes: function(rama){
             return $http({
                 method: 'GET',
