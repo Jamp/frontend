@@ -19,7 +19,7 @@ angular.module('frontendApp')
     var tipo = $stateParams.tipo;
     var estructura = usuario.estructura;
     var nivel = usuario.nivel;
-    var url = '/estructura/'+tipo+'/'+nivel+'/'+estructura;
+    var url = '/estructuras/'+tipo+'/'+nivel+'/'+estructura;
 
     if (nivel === 5) {
         url = '/jovenes/'+estructura;

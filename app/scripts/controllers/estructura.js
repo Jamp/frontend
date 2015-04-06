@@ -14,6 +14,14 @@ angular.module('frontendApp')
     var tipo = $stateParams.tipo;
     var usuario = store.get('me');
 
+    var fnCargar = function(){
+        apiFactory.estructura(nivel, estructura).then(function(response){
+            $scope.lista = response.data;
+        }, function(){
+            $rootScope.oneAlert('Ha occurrido un error!!! ', 'danger');
+        });
+    };
+
     if ((+usuario.nivel+1) === nivel){
         $scope.historyBack = true;
     }
@@ -21,7 +29,7 @@ angular.module('frontendApp')
     if (nivel === 5){
         $scope.newUrl = '/jovenes/';
     } else {
-        $scope.newUrl = '/estructura/'+tipo+'/'+nivel+'/';
+        $scope.newUrl = '/estructuras/'+tipo+'/'+nivel+'/';
     }
 
     switch (+nivel) {
@@ -43,7 +51,16 @@ angular.module('frontendApp')
             break;
     }
 
-    apiFactory.estructura(nivel, estructura).then(function(response){
-        $scope.lista = response.data;
-    });
+    fnCargar();
+
+    $scope.fnBorrar = function(id) {
+        $rootScope.oneAlert('Procesando...', 'info');
+        apiFactory.borrarEstructura(nivel, id).then(function(){
+            fnCargar();
+            $rootScope.oneAlert('Borrado éxitoso', 'success');
+        }, function(error){
+            var msg = $rootScope.httpCode(error.status);
+            $rootScope.oneAlert(msg, 'danger');
+        });
+    };
 });

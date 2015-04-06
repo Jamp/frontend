@@ -33,12 +33,12 @@ angular
         templateUrl: 'views/inicio.html',
         controller: 'InicioCtrl'
     })
-    .state('navegar',{
-        url: '/navegar/:tipo/',
+    .state('estructura',{
+        url: '/estructura/:tipo/',
         controller: 'NavegarCtrl'
     })
-    .state('estructura',{
-        url: '/estructura/:tipo/:nivelId/:estructuraId',
+    .state('estructuras',{
+        url: '/estructuras/:tipo/:nivelId/:estructuraId',
         templateUrl: 'views/estructura.html',
         controller: 'EstructuraCtrl'
     })
@@ -64,7 +64,6 @@ angular
     })
     .state('salir',{
         url: '/salir',
-        // templateUrl: 'app/entrar/entrar.html',
         controller: 'SalirCtrl',
         publicView: true
     });
@@ -95,16 +94,17 @@ angular
             }
         }
     });
+
     // Sistema de Alertas
     $rootScope.alerts = [];
     $rootScope.addAlert = function(mensaje, tipo) {
         tipo = (tipo === undefined)?'warning':tipo;
-        $rootScope.alerts.push( {msg: mensaje, type: tipo});
+        $rootScope.alerts.push({msg: mensaje, type: tipo});
     };
     $rootScope.oneAlert = function(mensaje, tipo) {
         $rootScope.alerts = [];
         tipo = (tipo === undefined)?'warning':tipo;
-        $rootScope.alerts.push( {msg: mensaje, type: tipo});
+        $rootScope.alerts.push({msg: mensaje, type: tipo});
     };
     $rootScope.closeAlert = function(index) {
         $rootScope.alerts.splice(index, 1);
