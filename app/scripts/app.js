@@ -33,12 +33,17 @@ angular
         templateUrl: 'views/inicio.html',
         controller: 'InicioCtrl'
     })
-    .state('estructura',{
-        url: '/estructura/:tipo/',
+    .state('nivel',{
+        url: '/nivel/:tipo/',
         controller: 'NavegarCtrl'
     })
     .state('estructuras',{
         url: '/estructuras/:tipo/:nivelId/:estructuraId',
+        templateUrl: 'views/estructuras.html',
+        controller: 'EstructurasCtrl'
+    })
+    .state('estructura',{
+        url: '/estructura/:nivelId/:estructuraId',
         templateUrl: 'views/estructura.html',
         controller: 'EstructuraCtrl'
     })

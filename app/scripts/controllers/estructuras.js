@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-.controller('EstructuraCtrl', function ($rootScope, $scope, $location, $stateParams, store, apiFactory) {
+.controller('EstructurasCtrl', function ($rootScope, $scope, $location, $stateParams, store, apiFactory) {
     var nivel = (+$stateParams.nivelId)?+$stateParams.nivelId+1:undefined;
     var estructura = $stateParams.estructuraId;
     var tipo = $stateParams.tipo;
