@@ -6,7 +6,7 @@
         <input type="password" class="form-control" placeholder="Contraseña" name="clave" ng-model="login.clave" required>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me"> Recordarme
+                <input type="checkbox" value="remember-me" ng-model="login.recordar"> Recordarme
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="entrar.$invalid || !button.enable">{{button.text}}</button>

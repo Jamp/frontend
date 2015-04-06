@@ -14,10 +14,7 @@ angular.module('frontendApp')
             $state.go('inicio');
         }
 
-        $scope.login = {
-            usuario: undefined,
-            clave: undefined
-        };
+        $scope.login = {};
 
         $scope.button = {
             text: 'Entrar',
