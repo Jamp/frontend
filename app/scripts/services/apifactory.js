@@ -72,6 +72,15 @@ angular.module('frontendApp')
                 url: base+lugar
             });
         },
+        nuevoEstructura: function(nivel, estructura){
+            var lugar = 'estructura/'+nivel;
+            return $http({
+                method: 'POST',
+                url: base+lugar,
+                data: obj2url(estructura),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            });
+        },
         jovenes: function(rama){
             return $http({
                 method: 'GET',

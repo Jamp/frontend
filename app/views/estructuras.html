@@ -3,7 +3,8 @@
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
     <p class="text-right">
         <btn-back ng-if="!historyBack"></btn-back>
-        <button type="button" class="btn btn-success" ng-click="fnNuevo()"><i class="fa fa-plus"></i> Nuevo</button>
+        <a href="#{{newUrl+item.id}}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</a>
+        <!--<button type="button" class="btn btn-success" ng-click="fnNuevo()"></button>-->
     </p>
     <table class="table table-striped">
         <tr>
@@ -14,11 +15,14 @@
         <tr ng-if="!lista">
             <td class="text-center" colspan="4"><i class="fa fa-spinner fa-spin"></i> Por favor espere...</td>
         </tr>
+        <tr ng-if="!lista.length">
+            <td class="text-center info" colspan="4"><i class="fa fa-rebel"></i> Esta estructura esta vacía</td>
+        </tr>
         <tr ng-repeat="item in lista | orderBy: 'nombre'">
             <td class="text-center">{{$index+1}}</td>
             <td>{{item.nombre}}</td>
             <td class="text-center">
-                <a href="#{{newUrl+item.id}}" class="btn btn-default"><i class="fa fa-edit"></i> Detalles</a>
+                <a href="#{{nextUrl+item.id}}" class="btn btn-default"><i class="fa fa-edit"></i> Detalles</a>
             </td>
             <td class="text-center">
                 <button class="btn btn-danger" ng-click="fnBorrar(item.id)" ng-disabled="newUrl == '/jovenes/'"><i class="fa fa-trash"></i> Borrar</button>

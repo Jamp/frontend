@@ -26,10 +26,12 @@ angular.module('frontendApp')
         $scope.historyBack = true;
     }
 
+    $scope.newUrl = '/estructura/'+nivel+'/'+estructura;
+
     if (nivel === 5){
-        $scope.newUrl = '/jovenes/';
+        $scope.nextUrl = '/jovenes/';
     } else {
-        $scope.newUrl = '/estructuras/'+tipo+'/'+nivel+'/';
+        $scope.nextUrl = '/estructuras/'+tipo+'/'+nivel+'/';
     }
 
     switch (+nivel) {
