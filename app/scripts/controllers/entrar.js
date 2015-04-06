@@ -52,6 +52,7 @@ angular.module('frontendApp')
                         create: identidad.iat
                     };
                     $rootScope.logged = true;
+                    $rootScope.resetAlert();
                     store.set('token', token);
                     store.set('me', me);
                     $state.go('inicio');
