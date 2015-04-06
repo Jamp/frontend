@@ -90,7 +90,6 @@ angular
         if (!to.publicView) {
             if (!store.get('token') || jwtHelper.isTokenExpired(store.get('token'))) {
                 e.preventDefault();
-                $rootScope.resetAlert();
                 store.remove('me');
                 store.remove('token');
                 $state.go('entrar');
@@ -131,11 +130,7 @@ angular
             msg = 'Acceso Denegado';
         } else if (code === 404){
             msg = 'Servidor no encontrado, verifique su conexión a internet';
-        } else if (code === 201) {
-            msg = '{0} creado éxitosamente';
-        } else if (code === 202){
-            msg = '{0} actualizado éxitosamente';
-        } else if (code === 200){
+        } else if (code === 200 || code === 202 || code === 201){
             return true;
         }
         return msg;
