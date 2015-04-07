@@ -28,7 +28,7 @@ angular.module('frontendApp')
 .directive('btnBack', function($window){
     return {
         restrict: 'E',
-        template: '<a href class="btn btn-warning"><i class="fa fa-chevron-left"></i> Volver</a>',
+        template: '<a href class="btn btn-info"><i class="fa fa-chevron-left"></i> Volver</a>',
         link: function(scope, element) {
             $(element).on('click', function() {
                 $window.history.back();
