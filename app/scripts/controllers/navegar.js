@@ -21,7 +21,7 @@ angular.module('frontendApp')
     var nivel = usuario.nivel;
     var url = '/estructuras/'+tipo+'/'+nivel+'/'+estructura;
 
-    if (nivel === 5) {
+    if (+nivel === 5) {
         url = '/jovenes/'+estructura;
     }
 
